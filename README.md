@@ -11,7 +11,7 @@ When connecting RS485 to USB, you must connect the positive terminal of one devi
 - **A+ (or D+, or TX+/RX+)**: This is the positive data line.
 - **B- (or D-, or TX-/RX-)**: This is the negative data line.
 
-![](./img/rs485-usb-adapter.jpg)
+![](./img/rs485-usb-adapter.jpeg)
 
 
 # Installation
