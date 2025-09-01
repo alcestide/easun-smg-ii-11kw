@@ -2,9 +2,7 @@
 
 **Product:** https://www.powland.net/collections/isolar-smg-ii/products/isolar-smg-ii-11kw-48v-wifi
 
-This repository provides the Home Assistant configuration needed to monitor and control **EASUN ISolar SMG II 8/11kW** inverters via Modbus RTU. Tested using a RS485 to USB adapter.
-
-
+This repository provides a Home Assistant configuration and Modbus register addresses for monitoring and controlling EASUN ISolar SMG II 8/11kW inverters. It has been tested using an RS485 to USB adapter.
 
 ![](./img/rs485-usb-pinout.png)
 
