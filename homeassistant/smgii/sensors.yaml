@@ -1,0 +1,762 @@
+- name: Fault Code
+  slave: 1
+  address: 100
+  data_type: uint32
+  input_type: holding
+  unique_id: 26166197-80a8-42ba-bd5c-7d6aee56490f
+
+- name: Warning Code
+  slave: 1
+  address: 104
+  data_type: uint32
+  input_type: holding
+  unique_id: b1b11683-79d4-4da0-bc3e-aca50456083b
+
+- name: Device Type
+  slave: 1
+  address: 171
+  data_type: int16
+  input_type: holding
+  unique_id: 54f846e2-0576-4a4f-9d90-b344fc21da29
+
+- name: Serial Number
+  slave: 1
+  address: 186
+  data_type: string
+  count: 12
+  input_type: holding
+  unique_id: ac9532fa-73d8-4c5b-919b-854a548081bf
+
+- name: Power Flow State Code
+  slave: 1
+  address: 198
+  data_type: uint16
+  input_type: holding
+  unique_id: c7710cf0-259e-4b02-aa03-f58d1463330a
+
+- name: Operating Mode Code
+  slave: 1
+  address: 201
+  data_type: uint16
+  input_type: holding
+  unique_id: d61c2e42-b003-4b59-92f8-ccf16ebd203c
+
+- name: Grid Frequency
+  unit_of_measurement: Hz
+  slave: 1
+  address: 203
+  data_type: int16
+  device_class: frequency
+  scale: 0.01
+  precision: 2
+  input_type: holding
+  unique_id: 000c2ad6-1fd3-44e0-a9df-7911f9c2b878
+
+- name: AC Charging Power
+  unit_of_measurement: W
+  slave: 1
+  address: 206
+  data_type: int16
+  device_class: power
+  precision: 0
+  input_type: holding
+  unique_id: 0d214077-cd68-4a67-b3e1-cc35e677f004
+
+- name: Power Flow State Expansion Code
+  slave: 1
+  address: 207
+  data_type: uint16
+  input_type: holding
+  unique_id: a56e1498-e236-4bea-8344-0950102472fa
+
+- name: Inverter Frequency
+  unit_of_measurement: Hz
+  slave: 1
+  address: 227
+  data_type: int16
+  device_class: frequency
+  scale: 0.01
+  precision: 2
+  input_type: holding
+  unique_id: f2cc27f8-81bc-4687-944c-71c5e2bd3786
+
+- name: AC Charging Current
+  unit_of_measurement: A
+  slave: 1
+  address: 230
+  data_type: int16
+  device_class: current
+  scale: 0.1
+  precision: 1
+  input_type: holding
+  unique_id: eb593045-ae84-41f4-a763-7ad1d500c7a4
+
+- name: Inverter Module Temperature
+  unit_of_measurement: °C
+  slave: 1
+  address: 231
+  data_type: int16
+  device_class: temperature
+  precision: 0
+  input_type: holding
+  unique_id: 86f96a41-ddff-40c1-a515-a6b19501a2d4
+
+- name: Output Frequency
+  unit_of_measurement: Hz
+  slave: 1
+  address: 253
+  data_type: int16
+  device_class: frequency
+  scale: 0.01
+  precision: 2
+  input_type: holding
+  unique_id: 822a9fc5-d1dd-4d46-8549-6232555a5a57
+
+- name: Battery Voltage
+  unit_of_measurement: V
+  slave: 1
+  address: 277
+  data_type: int16
+  device_class: voltage
+  scale: 0.1
+  precision: 1
+  input_type: holding
+  unique_id: 1814fc65-521b-43b6-88e7-d03aa2bd279c
+
+- name: Battery Current
+  unit_of_measurement: A
+  slave: 1
+  address: 278
+  data_type: int16
+  device_class: current
+  scale: 0.1
+  precision: 1
+  input_type: holding
+  unique_id: 7cbabbe5-fa4f-41a5-803d-25ae8db8396f
+
+- name: Battery Power
+  unit_of_measurement: W
+  slave: 1
+  address: 279
+  data_type: int16
+  device_class: power
+  precision: 0
+  input_type: holding
+  unique_id: 8666f70a-d2e9-41c9-8e53-799a544d58c6
+
+- name: SOC
+  unit_of_measurement: "%"
+  slave: 1
+  address: 280
+  data_type: uint16
+  device_class: power_factor
+  precision: 0
+  input_type: holding
+  unique_id: f82c80c4-bafc-42d9-85f5-241ece10898d
+
+- name: DC Module Temperature
+  unit_of_measurement: °C
+  slave: 1
+  address: 281
+  data_type: int16
+  device_class: temperature
+  precision: 0
+  input_type: holding
+  unique_id: 913c4630-03cd-4c92-8083-9dd30aab1a76
+
+- name: Total PV Power
+  unit_of_measurement: W
+  slave: 1
+  address: 302
+  data_type: int16
+  device_class: power
+  precision: 0
+  input_type: holding
+  unique_id: 9205d1f3-fdea-4fda-8651-9ed166616766
+
+- name: Total PV Charging Power
+  unit_of_measurement: W
+  slave: 1
+  address: 303
+  data_type: int16
+  device_class: power
+  precision: 0
+  input_type: holding
+  unique_id: 2f89a8ac-3142-4b44-823f-78cce3e7e3da
+
+- name: Total PV Charging Current
+  unit_of_measurement: A
+  slave: 1
+  address: 304
+  data_type: int16
+  device_class: current
+  scale: 0.1
+  precision: 1
+  input_type: holding
+  unique_id: c6bf9e9f-5618-4046-a687-700fe2e84e2a
+
+- name: PV Temperature
+  unit_of_measurement: °C
+  slave: 1
+  address: 305
+  data_type: int16
+  device_class: temperature
+  precision: 0
+  input_type: holding
+  unique_id: af0e7951-4fd1-4f03-9b39-bb36c557822e
+
+- name: Grid Voltage
+  unit_of_measurement: V
+  slave: 1
+  address: 338
+  data_type: int16
+  device_class: voltage
+  scale: 0.1
+  precision: 1
+  input_type: holding
+  unique_id: f8b5250f-10be-4b94-97b9-4e4f0af1646e
+
+- name: Grid Active Power
+  unit_of_measurement: W
+  slave: 1
+  address: 340
+  data_type: int16
+  device_class: power
+  precision: 0
+  input_type: holding
+  unique_id: edc97d5f-2625-4c87-bbe2-6d6419e86358
+
+- name: Grid Apparent Power
+  unit_of_measurement: VA
+  slave: 1
+  address: 341
+  data_type: int16
+  device_class: apparent_power
+  precision: 0
+  input_type: holding
+  unique_id: d9952ad3-9226-418b-84ef-e99ca90fe296
+
+- name: Inverter Voltage
+  unit_of_measurement: V
+  slave: 1
+  address: 342
+  data_type: int16
+  device_class: voltage
+  scale: 0.1
+  precision: 1
+  input_type: holding
+  unique_id: a28b958b-d2b2-437e-abbc-3307019eac4d
+
+- name: Inverter Current
+  unit_of_measurement: A
+  slave: 1
+  address: 343
+  data_type: int16
+  device_class: current
+  scale: 0.1
+  precision: 1
+  input_type: holding
+  unique_id: e651f3a9-69d5-46d3-83ea-ef7bf60ff52f
+
+- name: Inverter Active Power
+  unit_of_measurement: W
+  slave: 1
+  address: 344
+  data_type: int16
+  device_class: power
+  precision: 0
+  input_type: holding
+  unique_id: 46e325a8-9661-4cf1-b38c-6a53217d78de
+
+- name: Inverter Apparent Power
+  unit_of_measurement: VA
+  slave: 1
+  address: 345
+  data_type: int16
+  device_class: apparent_power
+  precision: 0
+  input_type: holding
+  unique_id: 02e4a937-ae44-4e7c-9845-6b65b7b02fcc
+
+- name: Output Voltage
+  unit_of_measurement: V
+  slave: 1
+  address: 346
+  data_type: int16
+  device_class: voltage
+  scale: 0.1
+  precision: 1
+  input_type: holding
+  unique_id: e0b8f576-c358-48fa-9279-41beaf7f00d9
+
+- name: Output Current
+  unit_of_measurement: A
+  slave: 1
+  address: 347
+  data_type: int16
+  device_class: current
+  scale: 0.1
+  precision: 1
+  input_type: holding
+  unique_id: d7918867-4a12-4fa9-924f-0fa05b9b2e24
+
+- name: Output Active Power
+  unit_of_measurement: W
+  slave: 1
+  address: 348
+  data_type: int16
+  device_class: power
+  precision: 0
+  input_type: holding
+  unique_id: f744bf1f-0024-47b4-a541-b0584a318e25
+
+- name: Output Apparent Power
+  unit_of_measurement: VA
+  slave: 1
+  address: 349
+  data_type: int16
+  device_class: apparent_power
+  precision: 0
+  input_type: holding
+  unique_id: 0db172ec-98c5-47c9-8032-d1d880a953bd
+
+- name: Load Percentage
+  unit_of_measurement: "%"
+  slave: 1
+  address: 350
+  data_type: int16
+  device_class: power_factor
+  precision: 0
+  input_type: holding
+  unique_id: 944e039c-485d-4b34-9c88-28cb7eb8096d
+
+- name: PV1 Voltage
+  unit_of_measurement: V
+  slave: 1
+  address: 351
+  data_type: int16
+  device_class: voltage
+  scale: 0.1
+  precision: 1
+  input_type: holding
+  unique_id: 741ccacf-604e-4d55-a086-90d71155fbb4
+
+- name: PV1 Current
+  unit_of_measurement: A
+  slave: 1
+  address: 352
+  data_type: int16
+  device_class: current
+  scale: 0.1
+  precision: 1
+  input_type: holding
+  unique_id: ea557bc7-0f11-44f7-aaa4-190c1abb563b
+
+- name: PV1 Power
+  unit_of_measurement: W
+  slave: 1
+  address: 353
+  data_type: int16
+  device_class: power
+  precision: 0
+  input_type: holding
+  unique_id: 32fff2cf-204b-44a2-ae8c-bb017ae3cacd
+
+- name: PV2 Voltage
+  unit_of_measurement: V
+  slave: 1
+  address: 389
+  data_type: int16
+  device_class: voltage
+  scale: 0.1
+  precision: 1
+  input_type: holding
+  unique_id: ff13aa71-bac5-4329-8e0e-3079ad8e27e7
+
+- name: PV2 Current
+  unit_of_measurement: A
+  slave: 1
+  address: 390
+  data_type: int16
+  device_class: current
+  scale: 0.1
+  precision: 1
+  input_type: holding
+  unique_id: c37a8dcc-a748-452b-a216-d9d5f85a11e1
+
+- name: PV2 Power
+  unit_of_measurement: W
+  slave: 1
+  address: 391
+  data_type: int16
+  device_class: power
+  precision: 0
+  input_type: holding
+  unique_id: fdba95b0-0356-4ab7-80a5-30df65b94595
+
+######### Read/Write registers ###########
+
+- name: Output Mode Code
+  slave: 1
+  address: 600
+  data_type: uint16
+  input_type: holding
+  unique_id: 6b7bcef3-7c81-44f0-9e15-507200434299
+
+- name: Output Priority1 Code
+  slave: 1
+  address: 601
+  data_type: uint16
+  input_type: holding
+  unique_id: b653f7cc-e664-4c46-9b1b-c490a03edc6f
+
+- name: Output Priority2 Code
+  slave: 1
+  address: 602
+  data_type: uint16
+  input_type: holding
+  unique_id: 5f9cca9d-d10f-43ff-8b23-0e3247de8af9
+
+- name: Output Priority2 Start Time
+  slave: 1
+  address: 603
+  data_type: uint16
+  input_type: holding
+  unique_id: fcf455e3-0996-4be0-ba5e-0cf13a79520d
+
+- name: Output Priority2 End Time
+  slave: 1
+  address: 604
+  data_type: uint16
+  input_type: holding
+  unique_id: 202a9381-3e1a-4fbd-8254-db686b0c1dab
+
+- name: Current Output Priority Code
+  slave: 1
+  address: 605
+  data_type: uint16
+  input_type: holding
+  unique_id: 6b30d805-5945-40a0-928c-d8add7653e46
+
+- name: Output Voltage Setting
+  unit_of_measurement: V
+  slave: 1
+  address: 606
+  data_type: int16
+  device_class: voltage
+  scale: 0.1
+  precision: 0
+  input_type: holding
+  unique_id: 98e5c959-7e78-4773-bdac-18e5f59979d9
+
+- name: Output Frequency Setting
+  unit_of_measurement: Hz
+  slave: 1
+  address: 607
+  data_type: int16
+  device_class: frequency
+  scale: 0.01
+  precision: 0
+  input_type: holding
+  unique_id: 8d7293a6-e85c-49c9-85fa-b9bdb5bc8cb6
+
+- name: Battery Type Code
+  slave: 1
+  address: 630
+  data_type: uint16
+  input_type: holding
+  unique_id: 2542b3b6-d9a5-44d1-a268-ea1cb5b68685
+
+- name: Overvoltage Protection Setting
+  unit_of_measurement: V
+  slave: 1
+  address: 631
+  data_type: uint16
+  device_class: voltage
+  scale: 0.1
+  precision: 1
+  input_type: holding
+  unique_id: ee2275f8-250c-42af-9a77-66274ec22717
+
+- name: Charger Source Priority1 Code
+  slave: 1
+  address: 632
+  data_type: uint16
+  input_type: holding
+  unique_id: 133ac9b5-5687-4dae-919b-e123b32409c6
+
+- name: Charger Source Priority2 Code
+  slave: 1
+  address: 633
+  data_type: uint16
+  input_type: holding
+  unique_id: c920894e-c2e2-49a6-b6b0-ed597ad05485
+
+- name: Charger Source Priority2 Start Time
+  slave: 1
+  address: 634
+  data_type: uint16
+  input_type: holding
+  unique_id: a7af145d-5a27-4c7f-9d8e-5cd798173c9d
+
+- name: Charger Source Priority2 End Time
+  slave: 1
+  address: 635
+  data_type: uint16
+  input_type: holding
+  unique_id: 3ed29174-f59d-49bc-ba09-779bae29a6a9
+
+- name: Current Charger Source Priority Code
+  slave: 1
+  address: 636
+  data_type: uint16
+  input_type: holding
+  unique_id: aea8b32b-39ac-4c2f-9f7c-6d63a697ff41
+
+- name: Bulk Charging Voltage Setting
+  unit_of_measurement: V
+  slave: 1
+  address: 637
+  data_type: uint16
+  device_class: voltage
+  scale: 0.1
+  precision: 1
+  input_type: holding
+  unique_id: 31ec2d63-ff22-4ff5-88ec-58ea972659d2
+
+- name: Floating Charging Voltage Setting
+  unit_of_measurement: V
+  slave: 1
+  address: 638
+  data_type: uint16
+  device_class: voltage
+  scale: 0.1
+  precision: 1
+  input_type: holding
+  unique_id: 555e0bff-dc77-44d4-8b31-be6305598b95
+
+- name: Bulk Charging Time Setting
+  unit_of_measurement: min
+  slave: 1
+  address: 639
+  data_type: uint16
+  device_class: duration
+  input_type: holding
+  unique_id: 170c1e61-8578-4a63-944e-ea6f2a508a9e
+
+- name: Max Charging Current Setting
+  unit_of_measurement: A
+  slave: 1
+  address: 640
+  data_type: uint16
+  device_class: current
+  scale: 0.1
+  precision: 0
+  input_type: holding
+  unique_id: e07d4476-da3f-4f41-9a05-7fd205a92b9d
+
+- name: Max Mains Charging Current Setting
+  unit_of_measurement: A
+  slave: 1
+  address: 641
+  data_type: uint16
+  device_class: current
+  scale: 0.1
+  precision: 0
+  input_type: holding
+  unique_id: 6a0d88d9-74a1-4939-871f-f7f57cd19805
+
+- name: Max Discharge Current Setting
+  unit_of_measurement: A
+  slave: 1
+  address: 642
+  data_type: uint16
+  device_class: current
+  scale: 1
+  precision: 0
+  input_type: holding
+  unique_id: e322521e-9608-469b-8196-b7fc7ff492be
+
+- name: Back to Battery Voltage Setting
+  unit_of_measurement: V
+  slave: 1
+  address: 643
+  data_type: uint16
+  device_class: voltage
+  scale: 0.1
+  precision: 1
+  input_type: holding
+  unique_id: 8ad2c51c-17ab-46dd-8cc1-f0643688f45a
+
+- name: Back to Grid Voltage Setting
+  unit_of_measurement: V
+  slave: 1
+  address: 644
+  data_type: uint16
+  device_class: voltage
+  scale: 0.1
+  precision: 1
+  input_type: holding
+  unique_id: fe2b7a1d-31f9-4481-b91d-5009c3002b2d
+
+- name: Low Voltage Protection Setting
+  unit_of_measurement: V
+  slave: 1
+  address: 646
+  data_type: uint16
+  device_class: voltage
+  scale: 0.1
+  precision: 1
+  input_type: holding
+  unique_id: 6c5a8d0a-6e78-426c-80ad-210fbe83ba3f
+
+- name: Back to Battery SOC Setting
+  unit_of_measurement: "%"
+  slave: 1
+  address: 647
+  data_type: int16
+  device_class: power_factor
+  precision: 0
+  input_type: holding
+  unique_id: 94328b77-2e9c-4ea1-803a-9b1e8f0b5c6f
+
+- name: Back to Grid SOC Setting
+  unit_of_measurement: "%"
+  slave: 1
+  address: 648
+  data_type: int16
+  device_class: power_factor
+  precision: 0
+  input_type: holding
+  unique_id: 0751ec19-f1e2-4fb9-86d5-2c39e3980004
+
+- name: Low SOC Protection Setting
+  unit_of_measurement: "%"
+  slave: 1
+  address: 650
+  data_type: int16
+  device_class: power_factor
+  precision: 0
+  input_type: holding
+  unique_id: 1af779f6-3164-4806-93e0-056a4d6ecd19
+
+- name: Battery Equalization Voltage Setting
+  unit_of_measurement: V
+  slave: 1
+  address: 652
+  data_type: uint16
+  device_class: voltage
+  scale: 0.1
+  precision: 1
+  input_type: holding
+  unique_id: 481e76b4-697b-4be5-a314-6d516e5a924c
+
+- name: Battery Equalization Time Setting
+  unit_of_measurement: min
+  slave: 1
+  address: 653
+  data_type: uint16
+  device_class: duration
+  input_type: holding
+  unique_id: 60d1dfa3-890b-4dea-a429-ac96de5ef4fa
+
+- name: Battery Equalization Timeout Setting
+  unit_of_measurement: min
+  slave: 1
+  address: 654
+  data_type: uint16
+  device_class: duration
+  input_type: holding
+  unique_id: ddb2039d-7b39-4323-80c7-1bb2ee00aaea
+
+- name: Battery Equalization Interval Setting
+  unit_of_measurement: day
+  slave: 1
+  address: 655
+  data_type: uint16
+  device_class: duration
+  input_type: holding
+  unique_id: f6152343-104a-478a-bc3a-0ff6f8a3494d
+
+- name: AC Input Voltage Range Code
+  slave: 1
+  address: 677
+  data_type: uint16
+  input_type: holding
+  unique_id: a2e22811-60ba-4754-80a2-b26d445ed056
+
+- name: Buzzer Mode Code
+  slave: 1
+  address: 678
+  data_type: uint16
+  input_type: holding
+  unique_id: 6671c99b-ac16-4850-aad5-043f9baddfd0
+
+- name: Masked Warnings Code
+  slave: 1
+  address: 687
+  data_type: uint32
+  input_type: holding
+  unique_id: e98d4e03-76b1-41ba-aee1-ea6a1190af03
+
+- name: Dry Contact Mode Code
+  slave: 1
+  address: 689
+  data_type: uint16
+  input_type: holding
+  unique_id: 044b9043-b871-452d-8462-d300547694d0
+
+- name: Rated PV Power Setting
+  unit_of_measurement: W
+  slave: 1
+  address: 691
+  data_type: int16
+  device_class: power
+  precision: 0
+  input_type: holding
+  unique_id: d283fc38-8dd0-4145-9a8b-b3c165f519f2
+
+- name: Boot Method Code
+  slave: 1
+  address: 693
+  data_type: uint16
+  input_type: holding
+  unique_id: f17c8b07-b0e9-46ee-a1f0-afd458012398
+
+- name: Remote Switch Code
+  slave: 1
+  address: 694
+  data_type: uint16
+  input_type: holding
+  unique_id: 31c0c26e-a944-460e-9d60-aecf82319317
+
+- name: Daily PV Energy Generation
+  unit_of_measurement: kWh
+  slave: 1
+  address: 702
+  data_type: int16
+  device_class: energy_storage
+  scale: 0.01
+  precision: 2
+  input_type: holding
+  unique_id: 33099205-a14d-42c9-8dc6-1def33377c97
+
+- name: Total PV Energy Generation
+  unit_of_measurement: kWh
+  slave: 1
+  address: 703
+  data_type: int32
+  device_class: energy_storage
+  scale: 0.01
+  precision: 2
+  input_type: holding
+  unique_id: e35cb14b-1cb1-4cda-aafc-df35f367f6a6
+
+- name: Lithium Battery Activation Time Setting
+  unit_of_measurement: min
+  slave: 1
+  address: 709
+  data_type: uint16
+  device_class: duration
+  input_type: holding
+  unique_id: 42959697-1035-4283-9b2a-d8dc010f9f0b

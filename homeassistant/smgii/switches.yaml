@@ -1,0 +1,128 @@
+- name: Battery Equalization Mode
+  slave: 1
+  address: 651
+  write_type: holdings
+  command_on: 1
+  command_off: 0
+  verify:
+  unique_id: 16728973-9578-455d-8afc-b9279ba61691
+
+- name: Equalization Activated Immediately
+  slave: 1
+  address: 656
+  write_type: holdings
+  command_on: 1
+  command_off: 0
+  verify:
+  unique_id: 80c133c1-a277-4a31-80b6-60e03ea1f403
+
+- name: LCD backlight
+  slave: 1
+  address: 679
+  write_type: holdings
+  command_on: 1
+  command_off: 0
+  verify:
+  unique_id: ebf381e3-c047-464a-ab1d-4a31f47cbb4f
+
+- name: LCD Return to Homepage
+  slave: 1
+  address: 680
+  write_type: holdings
+  command_on: 1
+  command_off: 0
+  verify:
+  unique_id: 3ce59988-1515-42a6-9b7a-f7dfb7426d08
+
+- name: Energy-saving mode
+  slave: 1
+  address: 681
+  write_type: holdings
+  command_on: 1
+  command_off: 0
+  verify:
+  unique_id: 5de14b9b-ecb9-49ad-9865-914d8669abc5
+
+- name: Overload Automatic Restart
+  slave: 1
+  address: 682
+  write_type: holdings
+  command_on: 1
+  command_off: 0
+  verify:
+  unique_id: eab01df6-4efb-416b-987a-f52dfa38ab37
+
+- name: Over Temperature Automatic Restart
+  slave: 1
+  address: 683
+  write_type: holdings
+  command_on: 1
+  command_off: 0
+  verify:
+  unique_id: 32a44974-c5b0-4fe5-b205-c7a1f327dec8
+
+- name: Overload Transfer to Bypass
+  slave: 1
+  address: 684
+  write_type: holdings
+  command_on: 1
+  command_off: 0
+  verify:
+  unique_id: 1f6d358a-cb48-4ff2-88cc-4fa4eb1ccfa1
+
+- name: PV Parallel Detection
+  slave: 1
+  address: 685
+  write_type: holdings
+  command_on: 1
+  command_off: 0
+  verify:
+  unique_id: f1fc84d1-74fa-4a96-9b65-83d3bd8ad158
+
+- name: External CT
+  slave: 1
+  address: 686
+  write_type: holdings
+  command_on: 1
+  command_off: 0
+  verify:
+  unique_id: 5e4e0326-5eb2-400d-9a21-44c2b547c136
+
+  # TODO: Mask warnings
+  # 687
+
+- name: Automatic Mains Output
+  slave: 1
+  address: 690
+  write_type: holdings
+  command_on: 1
+  command_off: 0
+  verify:
+  unique_id: 831afa4d-4fab-4c57-bcb0-4609f924d980
+
+- name: Islanding Detection
+  slave: 1
+  address: 692
+  write_type: holdings
+  command_on: 1
+  command_off: 0
+  verify:
+  unique_id: 84e3742d-7145-4edd-8926-59ad66eebeb6
+
+- name: Exit Fault State
+  slave: 1
+  address: 695
+  write_type: holdings
+  command_on: 1
+  command_off: 0
+  verify:
+  unique_id: 308efc10-c323-4e94-b36d-8b8dc553a789
+
+- name: Ground Relay Enabled
+  slave: 1
+  address: 707
+  write_type: holdings
+  command_on: 1
+  command_off: 0
+  verify:
+  unique_id: 91a5312d-e4b0-47df-a58e-35842fcca81e
