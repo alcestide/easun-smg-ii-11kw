@@ -11,3 +11,7 @@ modbus:
     sensors: !include sensors.yaml
     switches: !include switches.yaml
 
+template:
+  select: !include template_select.yaml
+  number: !include template_number.yaml
+  sensor: !include template_sensor.yaml

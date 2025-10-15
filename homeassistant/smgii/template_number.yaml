@@ -1,0 +1,463 @@
+- name: smgii1 OP Start Hour
+  unique_id: 51a78ace-626a-4be6-9f2e-ae354f7fbfbf
+  unit_of_measurement: "h"
+  state: "{{ states('sensor.smgii1_output_priority2_start_time')|int(0) // 100 }}"
+  min: 0
+  max: 23
+  step: 1
+  availability: "{{ not states('sensor.smgii1_output_priority2_code') in ['unavailable', 'unknown', 'none', '0'] }}"
+  set_value:
+    - service: modbus.write_register
+      data:
+        address: 603
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [(states('sensor.smgii1_output_priority2_start_time')|int(0) % 100) + value * 100] }}"
+
+- name: smgii1 OP Start Minute
+  unique_id: 35bb0ede-a229-4f6d-9189-a0bc3744a1fe
+  unit_of_measurement: "m"
+  state: "{{ states('sensor.smgii1_output_priority2_start_time')|int(0) % 100 }}"
+  min: 0
+  max: 59
+  step: 1
+  availability: "{{ not states('sensor.smgii1_output_priority2_code') in ['unavailable', 'unknown', 'none', '0'] }}"
+  set_value:
+    - service: modbus.write_register
+      data:
+        address: 603
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [(states('sensor.smgii1_output_priority2_start_time')|int(0) // 100) * 100 + value] }}"
+
+- name: smgii1 OP End Hour
+  unique_id: 0fd49920-a387-49b5-a75d-6d1ec2645437
+  unit_of_measurement: "h"
+  state: "{{ states('sensor.smgii1_output_priority2_end_time')|int(0) // 100 }}"
+  min: 0
+  max: 23
+  step: 1
+  availability: "{{ not states('sensor.smgii1_output_priority2_code') in ['unavailable', 'unknown', 'none', '0'] }}"
+  set_value:
+    - service: modbus.write_register
+      data:
+        address: 604
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [(states('sensor.smgii1_output_priority2_end_time')|int(0) % 100) + value * 100] }}"
+
+- name: smgii1 OP End Minute
+  unique_id: c9697de7-3968-4f28-87c6-8aca8eb46f54
+  unit_of_measurement: "m"
+  state: "{{ states('sensor.smgii1_output_priority2_end_time')|int(0) % 100 }}"
+  min: 0
+  max: 59
+  step: 1
+  availability: "{{ not states('sensor.smgii1_output_priority2_code') in ['unavailable', 'unknown', 'none', '0'] }}"
+  set_value:
+    - service: modbus.write_register
+      data:
+        address: 604
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [(states('sensor.smgii1_output_priority2_end_time')|int(0) // 100) * 100 + value] }}"
+
+- name: smgii1 Output Voltage
+  unique_id: f0027ebd-b927-4f45-9e9c-bf73a58279d0
+  unit_of_measurement: "V"
+  state: "{{ states('sensor.smgii1_output_voltage_setting')|int(0) }}"
+  min: 220
+  max: 240
+  step: 10
+  availability: "{{ not states('sensor.smgii1_output_voltage_setting') in ['unavailable', 'unknown', 'none'] }}"
+  set_value:
+    - service: modbus.write_register
+      data:
+        address: 606
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [value * 10] }}"
+
+- name: smgii1 Output Frequency
+  unique_id: 673f62f0-583b-4085-81d2-a23f287ea011
+  unit_of_measurement: "Hz"
+  state: "{{ states('sensor.smgii1_output_frequency_setting')|int(0) }}"
+  min: 50
+  max: 60
+  step: 10
+  availability: "{{ not states('sensor.smgii1_output_frequency_setting') in ['unavailable', 'unknown', 'none'] }}"
+  set_value:
+    - service: modbus.write_register
+      data:
+        address: 607
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [value * 100] }}"
+
+- name: smgii1 Overvoltage Protection
+  unique_id: cd0e7669-ff53-4eb1-bfdb-2c1936dd7041
+  unit_of_measurement: "V"
+  state: "{{ states('sensor.smgii1_overvoltage_protection_setting') }}"
+  min: "{{ [56, states('sensor.smgii1_bulk_charging_voltage_setting')|float(56)]|max }}"
+  max: 66
+  step: 0.1
+  availability: "{{ not states('sensor.smgii1_overvoltage_protection_setting') in ['unavailable', 'unknown', 'none'] }}"
+  set_value:
+    - service: modbus.write_register
+      data:
+        address: 631
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [value * 10] }}"
+
+- name: smgii1 CSP Start Hour
+  unique_id: 8105d556-f7e7-4581-852c-8df3bc50a80a
+  unit_of_measurement: "h"
+  state: "{{ states('sensor.smgii1_charger_source_priority2_start_time')|int(0) // 100 }}"
+  min: 0
+  max: 23
+  step: 1
+  availability: "{{ not states('sensor.smgii1_charger_source_priority2_code') in ['unavailable', 'unknown', 'none', '0'] }}"
+  set_value:
+    - service: modbus.write_register
+      data:
+        address: 634
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [(states('sensor.smgii1_charger_source_priority2_start_time')|int(0) % 100) + value * 100] }}"
+
+- name: smgii1 CSP Start Minute
+  unique_id: 317ebf00-6c5c-4651-8717-3c8eea9c446a
+  unit_of_measurement: "m"
+  state: "{{ states('sensor.smgii1_charger_source_priority2_start_time')|int(0) % 100 }}"
+  min: 0
+  max: 59
+  step: 1
+  availability: "{{ not states('sensor.smgii1_charger_source_priority2_code') in ['unavailable', 'unknown', 'none', '0'] }}"
+  set_value:
+    - service: modbus.write_register
+      data:
+        address: 634
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [(states('sensor.smgii1_charger_source_priority2_start_time')|int(0) // 100) * 100 + value] }}"
+
+- name: smgii1 CSP End Hour
+  unique_id: 7d60bb4c-73c8-4533-8f87-fc2d25cf0a0e
+  unit_of_measurement: "h"
+  state: "{{ states('sensor.smgii1_charger_source_priority2_end_time')|int(0) // 100 }}"
+  min: 0
+  max: 23
+  step: 1
+  availability: "{{ not states('sensor.smgii1_charger_source_priority2_code') in ['unavailable', 'unknown', 'none', '0'] }}"
+  set_value:
+    - service: modbus.write_register
+      data:
+        address: 635
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [(states('sensor.smgii1_charger_source_priority2_end_time')|int(0) % 100) + value * 100] }}"
+
+- name: smgii1 CSP End Minute
+  unique_id: bf759208-ff2d-4974-80f2-08c029e62de5
+  unit_of_measurement: "m"
+  state: "{{ states('sensor.smgii1_charger_source_priority2_end_time')|int(0) % 100 }}"
+  min: 0
+  max: 59
+  step: 1
+  availability: "{{ not states('sensor.smgii1_charger_source_priority2_code') in ['unavailable', 'unknown', 'none', '0'] }}"
+  set_value:
+    - service: modbus.write_register
+      data:
+        address: 635
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [(states('sensor.smgii1_charger_source_priority2_end_time')|int(0) // 100) * 100 + value] }}"
+
+- name: smgii1 Bulk Charging Voltage
+  unique_id: 55ef23c1-0e3b-46dc-bf0e-33b53c04898a
+  unit_of_measurement: "V"
+  state: "{{ states('sensor.smgii1_bulk_charging_voltage_setting') }}"
+  min: "{{ [48, states('sensor.smgii1_floating_charging_voltage_setting')|float(48)]|max }}"
+  max: "{{ [62, states('sensor.smgii1_overvoltage_protection_setting')|float(62)]|min }}"
+  step: 0.1
+  availability: "{{ not states('sensor.smgii1_bulk_charging_voltage_setting') in ['unavailable', 'unknown', 'none'] }}"
+  set_value:
+    - service: modbus.write_register
+      data:
+        address: 637
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [value * 10] }}"
+
+- name: smgii1 Floating Charging Voltage
+  unique_id: cf070880-11e0-4347-8cb3-cc5b33dda496
+  unit_of_measurement: "V"
+  state: "{{ states('sensor.smgii1_floating_charging_voltage_setting') }}"
+  min: 48
+  max: "{{ [64, states('sensor.smgii1_bulk_charging_voltage_setting')|float(64)]|min }}"
+  step: 0.1
+  availability: "{{ not states('sensor.smgii1_floating_charging_voltage_setting') in ['unavailable', 'unknown', 'none'] }}"
+  set_value:
+    - service: modbus.write_register
+      data:
+        address: 638
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [value * 10] }}"
+
+- name: smgii1 Bulk Charging Time
+  unique_id: 6070f84c-ced0-4b67-a421-76692e2d0f80
+  unit_of_measurement: "m"
+  state: "{{ states('sensor.smgii1_bulk_charging_time_setting') }}"
+  min: 0
+  max: 900
+  step: 5
+  availability: "{{ not states('sensor.smgii1_bulk_charging_time_setting') in ['unavailable', 'unknown', 'none'] }}"
+  set_value:
+    - service: modbus.write_register
+      data:
+        address: 639
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [value] }}"
+
+- name: smgii1 Max Charging Current
+  unique_id: 64103955-5fb3-48c1-906a-73f642a9c446
+  unit_of_measurement: "A"
+  state: "{{ states('sensor.smgii1_max_charging_current_setting') }}"
+  min: "{{ [10, states('sensor.smgii1_max_mains_charging_current_setting')|int(10)]|max }}"
+  max: 160
+  step: 1
+  availability: "{{ not states('sensor.smgii1_max_charging_current_setting') in ['unavailable', 'unknown', 'none'] }}"
+  set_value:
+    - service: modbus.write_register
+      data:
+        address: 640
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [value * 10] }}"
+
+- name: smgii1 Max Mains Charging Current
+  unique_id: 5b1fd3e1-d082-4494-9425-227f3da694cf
+  unit_of_measurement: "A"
+  state: "{{ states('sensor.smgii1_max_mains_charging_current_setting') }}"
+  min: 2
+  max: "{{ [120, states('sensor.smgii1_max_charging_current_setting')|int(120)]|min }}"
+  step: 1
+  availability: "{{ not states('sensor.smgii1_max_mains_charging_current_setting') in ['unavailable', 'unknown', 'none'] }}"
+  set_value:
+    - service: modbus.write_register
+      data:
+        address: 641
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [value * 10] }}"
+
+- name: smgii1 Max Discharge Current
+  unique_id: c83b35e7-5ec5-42c6-acf7-48c564870936
+  unit_of_measurement: "A"
+  state: "{{ states('sensor.smgii1_max_discharge_current_setting') }}"
+  min: 0
+  max: 500
+  step: 5
+  availability: "{{ not states('sensor.smgii1_max_discharge_current_setting') in ['unavailable', 'unknown', 'none'] }}"
+  set_value:
+    - service: modbus.write_register
+      data:
+        address: 642
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [value] }}"
+
+- name: smgii1 Back to Battery Voltage
+  unique_id: dd62063c-dc50-41dc-9c60-7cc39cfcabca
+  unit_of_measurement: "V"
+  state: "{{ states('sensor.smgii1_back_to_battery_voltage_setting') }}"
+  min: "{{ [48, states('sensor.smgii1_back_to_grid_voltage_setting')|float(47.9)+0.1]|max }}"
+  max: "{{ [62, states('sensor.smgii1_bulk_charging_voltage_setting')|float(62)-0.5]|min }}"
+  step: 0.1
+  availability: "{{ not states('sensor.smgii1_back_to_battery_voltage_setting') in ['unavailable', 'unknown', 'none'] }}"
+  set_value:
+    - service: modbus.write_register
+      data:
+        address: 643
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [value * 10] }}"
+
+- name: smgii1 Back to Grid Voltage
+  unique_id: 006695c7-04dd-44a9-9714-cd14f5bcc4e3
+  unit_of_measurement: "V"
+  state: "{{ states('sensor.smgii1_back_to_grid_voltage_setting') }}"
+  min: "{{ [44, states('sensor.smgii1_low_voltage_protection_setting')|float(43.9)+0.1]|max }}"
+  max: "{{ [54, states('sensor.smgii1_back_to_battery_voltage_setting')|float(54.1)-0.1]|min }}"
+  step: 0.1
+  availability: "{{ not states('sensor.smgii1_back_to_grid_voltage_setting') in ['unavailable', 'unknown', 'none'] }}"
+  set_value:
+    - service: modbus.write_register
+      data:
+        address: 644
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [value * 10] }}"
+
+- name: smgii1 Low Voltage Protection
+  unique_id: 752077ea-6d0c-4b78-9ed3-319e368808cc
+  unit_of_measurement: "V"
+  state: "{{ states('sensor.smgii1_low_voltage_protection_setting') }}"
+  min: 40
+  max: "{{ [54, states('sensor.smgii1_back_to_grid_voltage_setting')|float(54.1)-0.1]|min }}"
+  step: 0.1
+  availability: "{{ not states('sensor.smgii1_low_voltage_protection_setting') in ['unavailable', 'unknown', 'none'] }}"
+  set_value:
+    - service: modbus.write_register
+      data:
+        address: 646
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [value * 10] }}"
+
+- name: smgii1 Back to Battery SOC
+  unique_id: b37df883-3f2f-44b9-b50f-f76eb2c5358f
+  unit_of_measurement: "%"
+  state: "{{ states('sensor.smgii1_back_to_battery_soc_setting') }}"
+  min: 0
+  max: 100
+  step: 1
+  availability: "{{ not states('sensor.smgii1_back_to_battery_soc_setting') in ['unavailable', 'unknown', 'none'] }}"
+  set_value:
+    - service: modbus.write_register
+      data:
+        address: 647
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [value] }}"
+
+- name: smgii1 Back to Grid SOC
+  unique_id: e888630d-7ac4-4a2c-a3ac-8381f7f48974
+  unit_of_measurement: "%"
+  state: "{{ states('sensor.smgii1_back_to_grid_soc_setting') }}"
+  min: 0
+  max: 100
+  step: 1
+  availability: "{{ not states('sensor.smgii1_back_to_grid_soc_setting') in ['unavailable', 'unknown', 'none'] }}"
+  set_value:
+    - service: modbus.write_register
+      data:
+        address: 648
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [value] }}"
+
+- name: smgii1 Low SOC Protection
+  unique_id: 441f3b43-8d9e-4d55-8c24-fd97fd5a1362
+  unit_of_measurement: "%"
+  state: "{{ states('sensor.smgii1_low_soc_protection_setting') }}"
+  min: 0
+  max: 100
+  step: 1
+  availability: "{{ not states('sensor.smgii1_low_soc_protection_setting') in ['unavailable', 'unknown', 'none'] }}"
+  set_value:
+    - service: modbus.write_register
+      data:
+        address: 650
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [value] }}"
+
+- name: smgii1 Battery Equalization Voltage
+  unique_id: 50f8c9d7-3e9f-4bc2-b895-710e555a9eac
+  unit_of_measurement: "V"
+  state: "{{ states('sensor.smgii1_battery_equalization_voltage_setting') }}"
+  min: "{{ [48, states('sensor.smgii1_floating_charging_voltage_setting')|float(54.0)]|max }}"
+  max: 62
+  step: 0.1
+  availability: "{{ not states('sensor.smgii1_battery_equalization_voltage_setting') in ['unavailable', 'unknown', 'none'] }}"
+  set_value:
+    - service: modbus.write_register
+      data:
+        address: 652
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [value * 10] }}"
+
+- name: smgii1 Battery Equalization Time
+  unique_id: 3309ef63-9167-43a1-bbed-b66e16bb6c76
+  unit_of_measurement: "m"
+  state: "{{ states('sensor.smgii1_battery_equalization_time_setting') }}"
+  min: 0
+  max: 900
+  step: 5
+  availability: "{{ not states('sensor.smgii1_battery_equalization_time_setting') in ['unavailable', 'unknown', 'none'] }}"
+  set_value:
+    - service: modbus.write_register
+      data:
+        address: 653
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [value] }}"
+
+- name: smgii1 Battery Equalization Timeout
+  unique_id: 84317140-4d88-4b4a-a68e-f6b92520c852
+  unit_of_measurement: "m"
+  state: "{{ states('sensor.smgii1_battery_equalization_timeout_setting') }}"
+  min: 0
+  max: 900
+  step: 5
+  availability: "{{ not states('sensor.smgii1_battery_equalization_timeout_setting') in ['unavailable', 'unknown', 'none'] }}"
+  set_value:
+    - service: modbus.write_register
+      data:
+        address: 654
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [value] }}"
+
+- name: smgii1 Battery Equalization Interval
+  unique_id: f179f836-2925-4c38-880f-15c032fc60b6
+  unit_of_measurement: "d"
+  state: "{{ states('sensor.smgii1_battery_equalization_interval_setting') }}"
+  min: 1
+  max: 90
+  step: 1
+  availability: "{{ not states('sensor.smgii1_battery_equalization_interval_setting') in ['unavailable', 'unknown', 'none'] }}"
+  set_value:
+    - service: modbus.write_register
+      data:
+        address: 655
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [value] }}"
+
+- name: smgii1 Rated PV Power
+  unique_id: de08ac65-c770-4315-ad55-3c79802713a7
+  unit_of_measurement: "W"
+  state: "{{ states('sensor.smgii1_rated_pv_power_setting') }}"
+  min: 200
+  max: 11000
+  step: 200
+  availability: "{{ not states('sensor.smgii1_rated_pv_power_setting') in ['unavailable', 'unknown', 'none'] }}"
+  set_value:
+    - service: modbus.write_register
+      data:
+        address: 691
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [value] }}"
+
+- name: smgii1 Lithium Battery Activation Time
+  unique_id: 067d0a02-03b5-46bd-9856-0d19e6545a6e
+  unit_of_measurement: "m"
+  state: "{{ states('sensor.smgii1_lithium_battery_activation_time_setting') }}"
+  min: 0
+  max: 300
+  step: 5
+  availability: "{{ not states('sensor.smgii1_lithium_battery_activation_time_setting') in ['unavailable', 'unknown', 'none'] }}"
+  set_value:
+    - service: modbus.write_register
+      data:
+        address: 709
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [value] }}"

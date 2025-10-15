@@ -1,0 +1,175 @@
+- name: smgii1 Output Mode
+  unique_id: 0bd0e0a3-5a49-4e48-b0af-7e728680bc04
+  options: "{{ ['Single', 'Parallel', '3-Phase P1', '3-Phase P2', '3-Phase P3', 'Split-Phase P1', 'Split-Phase P2'] }}"
+  state: >
+    {% if (this.attributes.options|list|count > 0) %}
+      {{ this.attributes.options[int(states('sensor.smgii1_output_mode_code'))] }}
+    {% endif %}
+  availability: "{{ not (states('sensor.smgii1_output_mode_code') in ['unavailable', 'unknown', 'none']) }}"
+  select_option:
+    - service: modbus.write_register
+      data:
+        address: 600
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [this.attributes.options.index(option)] }}"
+
+- name: smgii1 Output Priority (Primary)
+  unique_id: 4c7f8ce1-3ba6-4137-b285-c2a7ba7db23b
+  options: "{{ ['SUB', 'SBU', 'SUF'] }}"
+  state: >
+    {% if (this.attributes.options|list|count > 0) %}
+      {{ this.attributes.options[int(states('sensor.smgii1_output_priority1_code'))-1] }}
+    {% endif %}
+  availability: "{{ not (states('sensor.smgii1_output_priority1_code') in ['unavailable', 'unknown', 'none']) }}"
+  select_option:
+    - service: modbus.write_register
+      data:
+        address: 601
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [this.attributes.options.index(option)+1] }}"
+
+- name: smgii1 Output Priority (Secondary)
+  unique_id: 8f0d0300-665d-408c-a653-07e2937de835
+  options: "{{ ['Disabled', 'SUB', 'SBU', 'SUF'] }}"
+  state: >
+    {% if (this.attributes.options|list|count > 0) %}
+      {{ this.attributes.options[int(states('sensor.smgii1_output_priority2_code'))] }}
+    {% endif %}
+  availability: "{{ not (states('sensor.smgii1_output_priority2_code') in ['unavailable', 'unknown', 'none']) }}"
+  select_option:
+    - service: modbus.write_register
+      data:
+        address: 602
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [this.attributes.options.index(option)] }}"
+
+- name: smgii1 Battery Type
+  unique_id: 003217a4-74d0-4997-a2f8-23b3d375b18c
+  options: "{{ ['AGM', 'FLD', 'USER', 'Li2', 'Li4', 'LiB'] }}"
+  state: >
+    {% if (this.attributes.options|list|count > 0) %}
+      {{ this.attributes.options[[0, 1, 2, 4, 6, 8].index(int(states('sensor.smgii1_battery_type_code')))] }}
+    {% endif %}
+  availability: "{{ not (states('sensor.smgii1_battery_type_code') in ['unavailable', 'unknown', 'none']) }}"
+  select_option:
+    - service: modbus.write_register
+      data:
+        address: 630
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [[0, 1, 2, 4, 6, 8][this.attributes.options.index(option)]] }}"
+
+- name: smgii1 Charger Source Priority (Primary)
+  unique_id: 2652a61b-1a89-4e38-9411-8f0effe3f7e2
+  options: "{{ ['SOF (SolarFirst)', 'SNU (Solar&Utility)', 'OSO (Only Solar)', 'SOR (Solar Residual)'] }}"
+  state: >
+    {% if (this.attributes.options|list|count > 0) %}
+      {{ this.attributes.options[int(states('sensor.smgii1_charger_source_priority1_code'))-1] }}
+    {% endif %}
+  availability: "{{ not (states('sensor.smgii1_charger_source_priority1_code') in ['unavailable', 'unknown', 'none']) }}"
+  select_option:
+    - service: modbus.write_register
+      data:
+        address: 632
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [this.attributes.options.index(option)+1] }}"
+
+- name: smgii1 Charger Source Priority (Secondary)
+  unique_id: 0f7bcb8e-7c44-4814-abf4-e8df0b64aac9
+  options: "{{ ['Disabled', 'SOF (SolarFirst)', 'SNU (Solar&Utility)', 'OSO (Only Solar)', 'SOR (Solar Residual)'] }}"
+  state: >
+    {% if (this.attributes.options|list|count > 0) %}
+      {{ this.attributes.options[int(states('sensor.smgii1_charger_source_priority2_code'))] }}
+    {% endif %}
+  availability: "{{ not (states('sensor.smgii1_charger_source_priority2_code') in ['unavailable', 'unknown', 'none']) }}"
+  select_option:
+    - service: modbus.write_register
+      data:
+        address: 633
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [this.attributes.options.index(option)] }}"
+
+- name: smgii1 AC Input Voltage Range
+  unique_id: 691185f3-7039-41b3-9f3a-d476459c4b89
+  options: "{{ ['APL', 'UPS', 'GNT'] }}"
+  state: >
+    {% if (this.attributes.options|list|count > 0) %}
+      {{ this.attributes.options[int(states('sensor.smgii1_ac_input_voltage_range_code'))] }}
+    {% endif %}
+  availability: "{{ not (states('sensor.smgii1_ac_input_voltage_range_code') in ['unavailable', 'unknown', 'none']) }}"
+  select_option:
+    - service: modbus.write_register
+      data:
+        address: 677
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [this.attributes.options.index(option)] }}"
+
+- name: smgii1 Buzzer Mode
+  unique_id: f41ffd4a-8a5b-4d25-b8f7-6f513cc3be0e
+  options: "{{ ['Silent', 'Faults,Warnings,Source Chg', 'Faults,Warnings', 'Faults'] }}"
+  state: >
+    {% if (this.attributes.options|list|count > 0) %}
+      {{ this.attributes.options[int(states('sensor.smgii1_buzzer_mode_code'))] }}
+    {% endif %}
+  availability: "{{ not states('sensor.smgii1_buzzer_mode_code') in ['unavailable', 'unknown', 'none'] }}"
+  select_option:
+    - service: modbus.write_register
+      data:
+        address: 678
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [this.attributes.options.index(option)] }}"
+
+- name: smgii1 Dry Contact Mode
+  unique_id: 8de35e56-4d6e-4b52-945c-84e39ec3d300
+  options: "{{ ['Normal', 'Box Ground'] }}"
+  state: >
+    {% if (this.attributes.options|list|count > 0) %}
+      {{ this.attributes.options[int(states('sensor.smgii1_dry_contact_mode_code'))] }}
+    {% endif %}
+  availability: "{{ not states('sensor.smgii1_dry_contact_mode_code') in ['unavailable', 'unknown', 'none'] }}"
+  select_option:
+    - service: modbus.write_register
+      data:
+        address: 689
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [this.attributes.options.index(option)] }}"
+
+- name: smgii1 Boot Method
+  unique_id: a5b12979-8109-4c8b-b033-6e4d202347b4
+  options: "{{ ['Local or Remote', 'Local', 'Remote'] }}"
+  state: >
+    {% if (this.attributes.options|list|count > 0) %}
+      {{ this.attributes.options[int(states('sensor.smgii1_boot_method_code'))] }}
+    {% endif %}
+  availability: "{{ not states('sensor.smgii1_boot_method_code') in ['unavailable', 'unknown', 'none'] }}"
+  select_option:
+    - service: modbus.write_register
+      data:
+        address: 693
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [this.attributes.options.index(option)] }}"
+
+- name: smgii1 Remote Switch
+  unique_id: 2306e841-eaf0-4c89-b834-b8ddf615c6a7
+  options: "{{ ['Remote Shutdown', 'Remote Boot'] }}"
+  state: >
+    {% if (this.attributes.options|list|count > 0) %}
+      {{ this.attributes.options[int(states('sensor.smgii1_remote_switch_code'))] }}
+    {% endif %}
+  availability: "{{ not states('sensor.smgii1_remote_switch_code') in ['unavailable', 'unknown', 'none'] }}"
+  select_option:
+    - service: modbus.write_register
+      data:
+        address: 694
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [this.attributes.options.index(option)] }}"

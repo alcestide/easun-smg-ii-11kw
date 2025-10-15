@@ -1,0 +1,381 @@
+- name: smgii1 Fault Message
+  unique_id: 3b312267-4e16-44e0-86df-e1d2f1276f61
+  state: >
+    {% set codes = {
+      1 : 'Inverter overheating',
+      2 : 'PV Overtemperature',
+      3 : 'DCDC Overtemperature',
+      4 : 'Battery overvoltage',
+      5 : 'reserved',
+      6 : 'Output short circued',
+      7 : 'Inverter overvoltage',
+      8 : 'Output overloaded',
+      9 : 'Bus overvoltage',
+      10: 'Bus soft start failed',
+      11: 'PV overcurrent',
+      12: 'PV overvoltage',
+      13: 'DCDC overcurrent',
+      14: 'Inverter overcurrent',
+      15: 'Bus voltage too low',
+      16: 'reserved',
+      17: 'Over DC voltage in AC output',
+      18: 'PV1 current is too distorted',
+      19: 'Output current is too distorted',
+      20: 'Inverter current is too distorted',
+      21: 'Battery current is too distorted',
+      22: 'PV1 current is too distorted',
+      23: 'Inverter low voltage',
+      24: 'Inverter negative power',
+      25: 'Host in parallel system is lost',
+      26: 'Synchronization signal abnormal in the parallel system',
+      27: 'Battery type is incompatible',
+      28: 'Parallel versions are incompatible',
+      29: 'External TC settings are duplicated',
+      30: 'Output current L2 is too distorted'}
+    %}
+    {% set code = states('sensor.smgii1_fault_code')|int(-1) %}
+    {% if code == -1 %}
+      {{ states('sensor.smgii1_fault_code') }}
+    {% elif code == 0 %}
+      {{ 'OK' }}
+    {% else %}
+      {% for bit in codes.keys() %}
+        {% if code|bitwise_and(2 ** (bit - 1)) %}
+          {{ codes[bit] + '\n' }}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+
+- name: smgii1 Warning Messages
+  unique_id: 764fc543-55e0-4b86-a095-48cefa76e8ab
+  state: >
+    {% set codes = {
+      1 : 'Mains zero crossing is lost',
+      2 : 'Mains waveform abnormal',
+      3 : 'Mains overvoltage',
+      4 : 'Mains low voltage',
+      5 : 'Mains overfrequency',
+      6 : 'Mains low frequency',
+      7 : 'PV1 low voltage',
+      8 : 'Overtemperature',
+      9 : 'Battery low voltage',
+      10: 'Battery not connected',
+      11: 'Overload',
+      12: 'Battery Eq charging',
+      13: 'Battery not recharged to recovery point',
+      14: 'Output power derating',
+      15: 'Fan blocked',
+      16: 'PV energy is too low to be used',
+      17: 'Parallel communication interrupted',
+      18: 'Output mode of Single and Parallel systems is inconsistent',
+      19: 'Battery voltage difference of parallel system is too large',
+      20: 'Communication with lithium battery is abnormal',
+      21: 'Battery discharge current too high',
+      22: 'Islanding detected',
+      23: 'PV2 low voltage',
+      24: 'OP1 is overloaded',
+      25: 'OP2 load exceeds the set value',
+      26: 'OP2 is overloaded'}
+    %}
+    {% set code = states('sensor.smgii1_warning_code')|int(-1) %}
+    {% set ns = namespace(out='') %}
+    {% if code == -1 %}
+      {{ states('sensor.smgii1_warning_code') }}
+    {% elif code == 0 %}
+      {{ 'OK' }}
+    {% else %}
+      {% for bit in codes.keys() %}
+        {% if code|bitwise_and(2 ** (bit - 1)) %}
+          {% if ns.out != '' %}
+            {% set ns.out = ns.out + ', ' %}
+          {% endif %}
+          {% set ns.out = ns.out + codes[bit] %}
+        {% endif %}
+      {% endfor %}
+      {{ns.out}}
+    {% endif %}
+
+- name: smgii1 Info Messages
+  unique_id: 55c74eee-74a6-4b67-b06b-643ce087089e
+  state: >
+    {% set codes = {
+      1 : 'PV connected',
+      3 : 'Mains connected',
+      5 : 'Battery charging',
+      6 : 'Battery discharging',
+      7 : 'Load connected',
+      9 : 'Mains charging',
+      10: 'PV charging',
+      11: 'Battery icon off',
+      12: 'PV icon off',
+      13: 'Mains icon off',
+      14: 'Load icon off'}
+    %}
+    {% set codes_ext = {
+      1 : 'PV1 connected',
+      2 : 'PV2 connected',
+      3 : 'AC1 connected',
+      5 : 'AC2 connected',
+      7 : 'AC3 connected',
+      9 : 'OP1 not loaded',
+      10: 'OP2 not loaded'}
+    %}
+    {% set ns = namespace(out='') %}
+    {% set code = states('sensor.smgii1_power_flow_state_code')|int(-1) %}
+    {% set code_ext = states('sensor.smgii1_power_flow_state_expansion_code')|int(-1) %}
+    {% if code <= 0 and code_ext <=0 %}
+      {{ 'none' }}
+    {% else %}
+      {% for bit in codes.keys() %}
+        {% if code|bitwise_and(2 ** (bit - 1)) %}
+          {% if ns.out != '' %}
+            {% set ns.out = ns.out + ', ' %}
+          {% endif %}
+          {% set ns.out = ns.out + codes[bit] %}
+        {% endif %}
+      {% endfor %}
+      {% for bit in codes_ext.keys() %}
+        {% if code_ext|bitwise_and(2 ** (bit - 1)) %}
+          {% if ns.out != '' %}
+            {% set ns.out = ns.out + ', ' %}
+          {% endif %}
+          {% set ns.out = ns.out + codes_ext[bit] %}
+        {% endif %}
+      {% endfor %}
+      {{ns.out}}
+    {% endif %}
+
+- name: smgii1 Operating Mode
+  unique_id: 5cb06bf5-1b24-4b6b-aa7f-1b596db33541
+  state: >
+    {% set modes = {
+      '0': 'Power On Mode',
+      '1': 'Standby Mode',
+      '2': 'Mains Mode',
+      '3': 'Off-Grid Mode',
+      '4': 'Bypass Mode',
+      '5': 'Charging Mode',
+      '6': 'Fault Mode'}
+    %}
+    {% if states('sensor.smgii1_operating_mode_code') in modes.keys() %}
+      {{ modes.get(states('sensor.smgii1_operating_mode_code')) }}
+    {% else %}
+      {{ states('sensor.smgii1_operating_mode_code') }}
+    {% endif %}
+
+- name: smgii1 Output Mode
+  unique_id: 3b53a20b-471c-4f06-9d03-94bb072c3ff4
+  state: >
+    {% set modes = {
+      '0': 'Single',
+      '1': 'Parallel',
+      '2': '3-Phase P1',
+      '3': '3-Phase P2',
+      '4': '3-Phase P3',
+      '5': 'Split-Phase P1',
+      '6': 'Split-Phase P2'}
+    %}
+    {% if states('sensor.smgii1_output_mode_code') in modes.keys() %}
+      {{ modes.get(states('sensor.smgii1_output_mode_code')) }}
+    {% else %}
+      {{ states('sensor.smgii1_output_mode_code') }}
+    {% endif %}
+
+- name: smgii1 Output Priority1
+  unique_id: f609b58b-9c03-4c3a-8ec0-fdb28125994b
+  state: >
+    {% set modes = {
+      '1': 'SUB',
+      '2': 'SBU',
+      '3': 'SUF'}
+    %}
+    {% if states('sensor.smgii1_output_priority1_code') in modes.keys() %}
+      {{ modes.get(states('sensor.smgii1_output_priority1_code')) }}
+    {% else %}
+      {{ states('sensor.smgii1_output_priority1_code') }}
+    {% endif %}
+
+- name: smgii1 Output Priority2
+  unique_id: a3cc5a3d-9489-4976-9218-61f333aa52b2
+  state: >
+    {% set modes = {
+      '0': 'Disabled',
+      '1': 'SUB',
+      '2': 'SBU',
+      '3': 'SUF'}
+    %}
+    {% if states('sensor.smgii1_output_priority2_code') in modes.keys() %}
+      {{ modes.get(states('sensor.smgii1_output_priority2_code')) }}
+    {% else %}
+      {{ states('sensor.smgii1_output_priority2_code') }}
+    {% endif %}
+
+- name: smgii1 Current Output Priority
+  unique_id: f13b643c-2e37-4fce-a00c-1d8106ecb964
+  state: >
+    {% set modes = {
+      '1': 'SUB',
+      '2': 'SBU',
+      '3': 'SUF'}
+    %}
+    {% if states('sensor.smgii1_current_output_priority_code') in modes.keys() %}
+      {{ modes.get(states('sensor.smgii1_current_output_priority_code')) }}
+    {% else %}
+      {{ states('sensor.smgii1_current_output_priority_code') }}
+    {% endif %}
+
+- name: smgii1 Battery Type
+  unique_id: 54306293-7442-481f-89eb-7c30739e1433
+  state: >
+    {% set modes = {
+      '0': 'AGM',
+      '1': 'FLD',
+      '2': 'USER',
+      '4': 'Li2',
+      '6': 'Li4',
+      '8': 'LiB'}
+    %}
+    {% if states('sensor.smgii1_battery_type_code') in modes.keys() %}
+      {{ modes.get(states('sensor.smgii1_battery_type_code')) }}
+    {% else %}
+      {{ states('sensor.smgii1_battery_type_code') }}
+    {% endif %}
+
+- name: smgii1 Charger Source Priority1
+  unique_id: ac4720d4-5d92-4612-9a35-0482361b1d0d
+  state: >
+    {% set modes = {
+      '1': 'SOF',
+      '2': 'SNU',
+      '3': 'OSO',
+      '4': 'SOR'}
+    %}
+    {% if states('sensor.smgii1_charger_source_priority1_code') in modes.keys() %}
+      {{ modes.get(states('sensor.smgii1_charger_source_priority1_code')) }}
+    {% else %}
+      {{ states('sensor.smgii1_charger_source_priority1_code') }}
+    {% endif %}
+
+- name: smgii1 Charger Source Priority2
+  unique_id: 7cd057e2-f5cf-4e9d-9327-af674a2a6dc3
+  state: >
+    {% set modes = {
+      '0': 'Disabled',
+      '1': 'SOF',
+      '2': 'SNU',
+      '3': 'OSO',
+      '4': 'SOR'}
+    %}
+    {% if states('sensor.smgii1_charger_source_priority2_code') in modes.keys() %}
+      {{ modes.get(states('sensor.smgii1_charger_source_priority2_code')) }}
+    {% else %}
+      {{ states('sensor.smgii1_charger_source_priority2_code') }}
+    {% endif %}
+
+- name: smgii1 Current Charger Source Priority
+  unique_id: b9c2501b-0779-4f9c-99a6-913c4e819b4f
+  state: >
+    {% set modes = {
+      '1': 'SOF',
+      '2': 'SNU',
+      '3': 'OSO',
+      '4': 'SOR'}
+    %}
+    {% if states('sensor.smgii1_current_charger_source_priority_code') in modes.keys() %}
+      {{ modes.get(states('sensor.smgii1_current_charger_source_priority_code')) }}
+    {% else %}
+      {{ states('sensor.smgii1_current_charger_source_priority_code') }}
+    {% endif %}
+
+- name: smgii1 AC Input Voltage Range
+  unique_id: 1f53b49c-260c-4df8-97a6-a1bc9498b5f3
+  state: >
+    {% set modes = {
+      '0': 'APL',
+      '1': 'UPS',
+      '2': 'GNT'}
+    %}
+    {% if states('sensor.smgii1_ac_input_voltage_range_code') in modes.keys() %}
+      {{ modes.get(states('sensor.smgii1_ac_input_voltage_range_code')) }}
+    {% else %}
+      {{ states('sensor.smgii1_ac_input_voltage_range_code') }}
+    {% endif %}
+
+- name: smgii1 Buzzer Mode
+  unique_id: 4da5f44c-c44a-46b3-8d5e-a2c3226ed3a8
+  state: >
+    {% set modes = {
+      '0': 'Silent',
+      '1': 'Faults,Warnings,Source Chg',
+      '2': 'Faults,Warnings',
+      '3': 'Faults'}
+    %}
+    {% if states('sensor.smgii1_buzzer_mode_code') in modes.keys() %}
+      {{ modes.get(states('sensor.smgii1_buzzer_mode_code')) }}
+    {% else %}
+      {{ states('sensor.smgii1_buzzer_mode_code') }}
+    {% endif %}
+
+- name: smgii1 Dry Contact Mode
+  unique_id: 5099629a-7307-4520-be08-dfbd0da6e43b
+  state: >
+    {% set modes = {
+      '0': 'Normal',
+      '1': 'Box Ground'}
+    %}
+    {% if states('sensor.smgii1_dry_contact_mode_code') in modes.keys() %}
+      {{ modes.get(states('sensor.smgii1_dry_contact_mode_code')) }}
+    {% else %}
+      {{ states('sensor.smgii1_dry_contact_mode_code') }}
+    {% endif %}
+
+- name: smgii1 Boot Method
+  unique_id: cc87540c-d56a-4b9e-af32-6088c78d372c
+  state: >
+    {% set modes = {
+      '0': 'Local or Remote',
+      '1': 'Local',
+      '2': 'Remote'}
+    %}
+    {% if states('sensor.smgii1_boot_method_code') in modes.keys() %}
+      {{ modes.get(states('sensor.smgii1_boot_method_code')) }}
+    {% else %}
+      {{ states('sensor.smgii1_boot_method_code') }}
+    {% endif %}
+
+- name: smgii1 Remote Switch
+  unique_id: 46a941fd-1ab8-4585-bd88-ec3f27d8bb4f
+  state: >
+    {% set modes = {
+      '0': 'Remote Shutdown',
+      '1': 'Remote Boot'}
+    %}
+    {% if states('sensor.smgii1_remote_switch_code') in modes.keys() %}
+      {{ modes.get(states('sensor.smgii1_remote_switch_code')) }}
+    {% else %}
+      {{ states('sensor.smgii1_remote_switch_code') }}
+    {% endif %}
+
+- name: smgii1 Grid Consumed Power
+  unique_id: 6421b3b9-b827-48a1-bd21-981cae954182
+  unit_of_measurement: W
+  device_class: power
+  state: "{{ [states('sensor.smgii1_grid_active_power') | int(0), 0] | max }}"
+
+- name: smgii1 Grid Produced Power
+  unique_id: 39645bf9-f151-4938-866a-26fac5c79c18
+  unit_of_measurement: W
+  device_class: power
+  state: "{{ [states('sensor.smgii1_grid_active_power') | int(0) * (-1), 0] | max }}"
+
+- name: smgii1 Battery Charge Power
+  unique_id: b2223cc3-7910-4dde-b8ca-3bfe99f58a1c
+  unit_of_measurement: W
+  device_class: power
+  state: "{{ [states('sensor.smgii1_battery_power') | int(0), 0] | max }}"
+
+- name: smgii1 Battery Discharge Power
+  unique_id: c0a08c24-f9a9-4782-bdc2-3854ff857935
+  unit_of_measurement: W
+  device_class: power
+  state: "{{ [states('sensor.smgii1_battery_power') | int(0) * (-1), 0] | max }}"
