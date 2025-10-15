@@ -2,7 +2,14 @@
 
 **Product:** https://www.powland.net/collections/isolar-smg-ii/products/isolar-smg-ii-11kw-48v-wifi
 
-This repository provides a Home Assistant configuration and Modbus register addresses for monitoring and controlling EASUN ISolar SMG II 8/11kW inverters. It has been tested using an RS485 to USB adapter.
+This repository provides a Home Assistant configuration and Modbus register addresses for monitoring and controlling EASUN ISolar SMG II 8/11kW inverters. 
+
+# Installation
+
+## Raspberry
+
+
+It has been tested using an RS485 to USB adapter.
 
 ![](./img/rs485-usb-pinout.png)
 
@@ -13,9 +20,6 @@ When connecting RS485 to USB, you must connect the positive terminal of one devi
 
 ![](./img/rs485-usb-adapter.jpeg)
 
-
-# Installation
-
 Copy the `smgii` folder to the config folder in Home Assistant (using FTP or Samba).
 Then, in your `configuration.yaml`, add the following lines:
 
@@ -24,6 +28,12 @@ homeassistant:
    packages:
      easun_smg_ii: !include smgii/modbus.yaml
 ````
+
+## ESP-WROOM-32
+Use the provived .yaml in ESPHome Builder and flash the compiled .bin to your ESP32. Remember to change API/OTA keys and your Wi-Fi credentials.
+
+<img width="824" height="528" alt="image" src="https://github.com/user-attachments/assets/7909cfa6-23f7-4065-9bcc-614978165a62" />
+
 
 ### Registers
 
