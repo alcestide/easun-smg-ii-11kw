@@ -45,11 +45,11 @@ uart:
 # Enable Home Assistant API
 api:
   encryption:
-    key: "EHrrJF0vVacIMhUeiDNoLb5AA5G6rFzbY6rFKd4Yeqw="
+    key: "YOUR_API_KEY"
 
 ota:
   - platform: esphome
-    password: "fc1d76a9e2b174e2adc9d628e2ed1954"
+    password: "YOUR_OTA_PASSWORD"
     
 # ----------------------------------------------------------------------
 # GLOBAL CONFIGURATION
