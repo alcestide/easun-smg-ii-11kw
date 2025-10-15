@@ -16,6 +16,8 @@ When connecting RS485 to USB, you must connect the positive terminal of one devi
 
 # Installation
 
+## Raspberry
+
 Copy the `smgii` folder to the config folder in Home Assistant (using FTP or Samba).
 Then, in your `configuration.yaml`, add the following lines:
 
@@ -24,6 +26,10 @@ homeassistant:
    packages:
      easun_smg_ii: !include smgii/modbus.yaml
 ````
+
+## ESP32
+<img width="824" height="528" alt="image" src="https://github.com/user-attachments/assets/7909cfa6-23f7-4065-9bcc-614978165a62" />
+
 
 ### Registers
 
