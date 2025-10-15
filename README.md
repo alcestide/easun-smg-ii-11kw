@@ -2,7 +2,7 @@
 
 **Product:** https://www.powland.net/collections/isolar-smg-ii/products/isolar-smg-ii-11kw-48v-wifi
 
-This repository provides a Home Assistant (Raspberry Pi) and ESPHome (ESP-32-WROOM) configurations, both using Modbus RTU and the documented register addresses for monitoring and controlling EASUN ISolar SMG II 8/11kW inverters. 
+This repository provides a Home Assistant (Raspberry Pi) and ESPHome (ESP-32-WROOM) configuration, both using Modbus RTU and the documented register addresses for monitoring and controlling EASUN ISolar SMG II 8/11kW inverters. 
 
 # Installation
 
