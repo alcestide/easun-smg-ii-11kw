@@ -6,8 +6,16 @@ This repository provides a Home Assistant (Raspberry Pi) and ESPHome (ESP-32-WRO
 
 # Installation
 
-## Raspberry
+## ESP-WROOM-32
+Use the provived `/esphome/esp32-rs232.yaml` in ESPHome Builder and flash the compiled .bin to your ESP32. Remember to change API/OTA keys and your Wi-Fi credentials. 
 
+**Beware:** I uncommented every sensor/select etc, so you'll probably have way more entities than you need inside your Home Assistant. Consider commenting yourself those you don't need.
+
+Connect the pins as shown in this reference image:
+
+<img width="824" height="528" alt="image" src="https://github.com/user-attachments/assets/7909cfa6-23f7-4065-9bcc-614978165a62" />
+
+## Raspberry
 
 It has been tested using an RS485 to USB adapter.
 
@@ -20,6 +28,7 @@ When connecting RS485 to USB, you must connect the positive terminal of one devi
 
 ![](./img/rs485-usb-adapter.jpeg)
 
+We'll use the files in `/homeassistant/smgii`.
 Copy the `smgii` folder to the config folder in Home Assistant (using FTP or Samba).
 Then, in your `configuration.yaml`, add the following lines:
 
@@ -29,13 +38,9 @@ homeassistant:
      easun_smg_ii: !include smgii/modbus.yaml
 ````
 
-## ESP-WROOM-32
-Use the provived .yaml in ESPHome Builder and flash the compiled .bin to your ESP32. Remember to change API/OTA keys and your Wi-Fi credentials.
-
-<img width="824" height="528" alt="image" src="https://github.com/user-attachments/assets/7909cfa6-23f7-4065-9bcc-614978165a62" />
-
-
 ### Registers
+
+Thanks to [gagara](https://github.com/gagara) for the memory addresses and their description.
 
 | Setting                                            | Units   | Data type | Register Addr | Register Count | Read/Write                   | Comment                                                                                                                    | Protocol Number                                          |         |
 | -------------------------------------------------- | ------- | --------- | ------------- | -------------- | ---------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- | ------- |
