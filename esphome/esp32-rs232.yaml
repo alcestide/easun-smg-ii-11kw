@@ -486,6 +486,172 @@ sensor:
     state_class: measurement
     accuracy_decimals: 0
 
+  # L2 Grid Voltage (0.1V, uint16, Address 376)
+  - platform: modbus_controller
+    modbus_controller_id: smg0
+    name: "${name} L2 Grid Voltage"
+    address: 376
+    register_type: holding
+    value_type: U_WORD
+    unit_of_measurement: "V"
+    device_class: voltage
+    state_class: measurement
+    accuracy_decimals: 1
+    lambda: "return x / 10.0f;" 
+
+  # L2 Grid Current (0.1A, int16, Address 377) - NEW
+  - platform: modbus_controller
+    modbus_controller_id: smg0
+    name: "${name} L2 Grid Current"
+    address: 377
+    register_type: holding
+    value_type: S_WORD
+    unit_of_measurement: "A"
+    device_class: current
+    state_class: measurement
+    accuracy_decimals: 1
+    lambda: "return x / 10.0f;" 
+
+  # L2 Grid Active Power (1W, int16, Address 378)
+  - platform: modbus_controller
+    modbus_controller_id: smg0
+    name: "${name} L2 Grid Active Power"
+    address: 378
+    register_type: holding
+    value_type: S_WORD
+    unit_of_measurement: "W"
+    device_class: power
+    state_class: measurement
+    accuracy_decimals: 0
+
+  # L2 Grid Apparent Power (1VA, int16, Address 379) - NEW
+  - platform: modbus_controller
+    modbus_controller_id: smg0
+    name: "${name} L2 Grid Apparent Power"
+    address: 379
+    register_type: holding
+    value_type: S_WORD
+    unit_of_measurement: "VA"
+    device_class: apparent_power
+    state_class: measurement
+    accuracy_decimals: 0
+    
+  # L2 Output Voltage (0.1V, uint16, Address 380)
+  - platform: modbus_controller
+    modbus_controller_id: smg0
+    name: "${name} L2 Output Voltage"
+    address: 380
+    register_type: holding
+    value_type: U_WORD
+    unit_of_measurement: "V"
+    device_class: voltage
+    state_class: measurement
+    accuracy_decimals: 1
+    lambda: "return x / 10.0f;"
+
+  # L2 Output Current (0.1A, uint16, Address 381)
+  - platform: modbus_controller
+    modbus_controller_id: smg0
+    name: "${name} L2 Output Current"
+    address: 381
+    register_type: holding
+    value_type: U_WORD
+    unit_of_measurement: "A"
+    device_class: current
+    state_class: measurement
+    accuracy_decimals: 1
+    lambda: "return x / 10.0f;"
+
+  # L2 Output Active Power (1W, uint16, Address 382)
+  - platform: modbus_controller
+    modbus_controller_id: smg0
+    name: "${name} L2 Output Active Power"
+    address: 382
+    register_type: holding
+    value_type: U_WORD
+    unit_of_measurement: "W"
+    device_class: power
+    state_class: measurement
+    accuracy_decimals: 0
+
+  # L2 Grid Apparent Power (1VA, int16, Address 383) - NEW
+  - platform: modbus_controller
+    modbus_controller_id: smg0
+    name: "${name} L2 Grid Apparent Power"
+    address: 383
+    register_type: holding
+    value_type: S_WORD
+    unit_of_measurement: "VA"
+    device_class: apparent_power
+    state_class: measurement
+    accuracy_decimals: 0
+    
+  # L2 Output Voltage (0.1V, uint16, Address 384)
+  - platform: modbus_controller
+    modbus_controller_id: smg0
+    name: "${name} L2 Output Voltage"
+    address: 384
+    register_type: holding
+    value_type: U_WORD
+    unit_of_measurement: "V"
+    device_class: voltage
+    state_class: measurement
+    accuracy_decimals: 1
+    lambda: "return x / 10.0f;"
+
+  # L2 Output Current (0.1A, uint16, Address 385)
+  - platform: modbus_controller
+    modbus_controller_id: smg0
+    name: "${name} L2 Output Current"
+    address: 385
+    register_type: holding
+    value_type: U_WORD
+    unit_of_measurement: "A"
+    device_class: current
+    state_class: measurement
+    accuracy_decimals: 1
+    lambda: "return x / 10.0f;"
+
+  # L2 Output Active Power (1W, uint16, Address 386)
+  - platform: modbus_controller
+    modbus_controller_id: smg0
+    name: "${name} L2 Output Active Power"
+    address: 386
+    register_type: holding
+    value_type: U_WORD
+    unit_of_measurement: "W"
+    device_class: power
+    state_class: measurement
+    accuracy_decimals: 0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # ----------------------------------------------------------------------
 # TEXT SENSORS (OPERATIONAL STATE AND FAULT MASKING)
 # ----------------------------------------------------------------------
