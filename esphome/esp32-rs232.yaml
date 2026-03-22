@@ -624,34 +624,6 @@ sensor:
     state_class: measurement
     accuracy_decimals: 0
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # ----------------------------------------------------------------------
 # TEXT SENSORS (OPERATIONAL STATE AND FAULT MASKING)
 # ----------------------------------------------------------------------
