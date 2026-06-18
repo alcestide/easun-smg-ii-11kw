@@ -4,6 +4,12 @@
 
 This repository provides a Home Assistant (Raspberry Pi) and ESPHome (ESP-32-WROOM) configuration, both using Modbus RTU and the documented register addresses for monitoring and controlling EASUN ISolar SMG II 8/11kW inverters. 
 
+### Other Compatible Hardware
+While designed for the EASUN ISolar SMG II, the Modbus map and configurations in this repository have been confirmed to work with the following rebranded models:
+* **Anenji 11kW Hybrid Inverter** (ANJ-HHS-11kW-48V-wifi)
+
+> **Hardware Connection Note (Anenji 11kW):** The RS232 port on the Anenji unit utilizes a standard DB9 connector. It requires a simple straight-through connection cable to connect directly to your PC or serial interface device.
+
 # Installation
 
 ## ESP-WROOM-32
